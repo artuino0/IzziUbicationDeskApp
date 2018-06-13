@@ -1,0 +1,37 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Promotores</a>
+</nav>
+
+
+<div class="row pad-10">
+
+    <div class="col-8">
+        <h3>Mapa <small *ngIf="siguiendoNombre">Revision a: {{ siguiendoNombre }}</small> </h3>
+
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
+            <agm-marker *ngFor="let promotor of promotors" [latitude]="promotor.lat" [longitude]="promotor.lng"></agm-marker>
+        </agm-map>
+
+    </div>
+
+    <div class="col-4">
+        <h3>Promotores</h3>
+
+        <div class="list-group">
+
+            <a href="#" (click)="seguir( promotor )" *ngFor="let promotor of promotors" class="list-group-item list-group-item-action">
+                {{ promotor.nombre }}
+            </a>
+
+            <br>
+            <button *ngIf="siguiendoNombre" (click)="dejarDeSeguir()" class="btn btn-primary btn-block">
+                Dejar de seguir
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+</div>
